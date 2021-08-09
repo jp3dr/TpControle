@@ -14,18 +14,36 @@ p = 1.3 %kg/m^3
 syms u v 
 
 T = Tmax*(1-beta*((An*v/Wmax)-1).^2)
+diffT = diff(T,v)
 
+%forças
+FAero = (1/2)*p*Cd*A*v^2
 Fengine = T*An*u
-
 Fat = M*g*Cr
 
-FAero = (1/2)*p*Cd*A*v^2
 FaeroDiff = diff(FAero,v)
 
-partialV = diff(Fengine,v)
-partialU = diff(Fengine,u)
+%aceleração
+ac = 1/M*(Fengine-Fat-FAero) 
 
-ladoV = partialV - FaeroDiff
+%achando raízes
+Solution = solve(ac,[u,v])
 
-n = ladoV/M;
-delta = partialU/M;
+%testando se ao substituir valores encontrados, zera aceleração
+acEq = subs(ac,u,Solution.u)
+acEq2 = subs(acEq,v,Solution.v)
+
+Teq = subs(T,v,Solution.v)
+FengineDiff = diffT*An*Solution.u
+
+%Substituindo valores encontrados
+FengineDiffEq = subs(FengineDiff,v,Solution.v)
+FaeroDiffEq = subs(FaeroDiff,v,Solution.v)
+
+n = (FengineDiffEq - FaeroDiffEq)/M
+delta = (Teq*An)/M
+
+s = tf('s');
+Ge = delta/(s-n)
+
+
