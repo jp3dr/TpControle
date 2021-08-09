@@ -43,6 +43,10 @@ FaeroDiffEq = subs(FaeroDiff,v,Solution.v)
 n = (FengineDiffEq - FaeroDiffEq)/M
 delta = (Teq*An)/M
 
+refV = 27.78
+FaeroV = subs(FAero,v,refV)
+Fdrag = Fat+FaeroV
+b = Fdrag/refV
 s = tf('s');
 Ge = delta/(s-n)
 
