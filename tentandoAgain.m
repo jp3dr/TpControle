@@ -13,7 +13,7 @@ p = 1.3 %kg/m^3
 
 syms u v 
 
-T = Tmax*(1-beta*((An*v/Wmax)-1).^2)
+T = Tmax*(1-beta*(((An*v)/Wmax)-1)^2)
 diffT = diff(T,v)
 
 %forças
