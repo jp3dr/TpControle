@@ -31,14 +31,16 @@ Solution = solve(ac,[u,v])
 
 %testando se ao substituir valores encontrados, zera aceleração
 acEq = subs(ac,u,Solution.u)
-acEq2 = subs(acEq,v,Solution.v)
+Solution2 = solve(acEq,v)
+acEq2 = subs(acEq,v,Solution2(2))
 
-Teq = subs(T,v,Solution.v)
-FengineDiff = diffT*An*Solution.u
+Teq = subs(T,v,23)
+
+FengineDiff = diffT*An*0.1
 
 %Substituindo valores encontrados
-FengineDiffEq = subs(FengineDiff,v,Solution.v)
-FaeroDiffEq = subs(FaeroDiff,v,Solution.v)
+FengineDiffEq = subs(FengineDiff,v,23)
+FaeroDiffEq = subs(FaeroDiff,v,23)
 
 n = (FengineDiffEq - FaeroDiffEq)/M
 delta = (Teq*An)/M

@@ -4,7 +4,7 @@ clear
 Wmax = 420; % rad/s
 Tmax = 190; % Nm
 beta = 0.4;
-An = 40; % [40 25 16 12 10] % m^-1
+An = 16; % [40 25 16 12 10] % m^-1
 Cd = 0.32;
 Cr = 0.01;
 A = 2.42; %m^2
@@ -29,6 +29,19 @@ while (f > 0)
     Faero = 1/2*p*Cd*A*v^2;
     f = Fmotor-Fvisc-Faero;
 end
+
+ts = 1;
+
+s = tf('s');
+Transfer01 = (80.7*s+1)/(199.4*10*s);
+
+cz01 = c2d(Transfer01, ts)
+
+Transfer03 = (80.7*s+1)/(199.4*10*s);
+
+cz01 = c2d(Transfer, ts)
+
+
 
 % Tmax*(1-beta*(An*v/Wmax - 1)^2)*An*Uo/M - g*Cr - 1/2*p*Cd*A*v^2 = 0
 % aux = Tmax*An*Uo/M; % 3.8423
