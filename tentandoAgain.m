@@ -34,13 +34,12 @@ acEq = subs(ac,u,Solution.u)
 Solution2 = solve(acEq,v)
 acEq2 = subs(acEq,v,Solution2(2))
 
-Teq = subs(T,v,23)
-
-FengineDiff = diffT*An*0.1
+Teq = subs(T,v,Solution2(2))
+FengineDiff = diffT*An*Solution.u
 
 %Substituindo valores encontrados
-FengineDiffEq = subs(FengineDiff,v,23)
-FaeroDiffEq = subs(FaeroDiff,v,23)
+FengineDiffEq = subs(FengineDiff,v,Solution2(2))
+FaeroDiffEq = subs(FaeroDiff,v,Solution2(2))
 
 n = (FengineDiffEq - FaeroDiffEq)/M
 delta = (Teq*An)/M
