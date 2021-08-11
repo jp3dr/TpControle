@@ -37,9 +37,17 @@ Transfer01 = (80.7*s+1)/(199.4*10*s);
 
 cz01 = c2d(Transfer01, ts)
 
-Transfer03 = (80.7*s+1)/(199.4*10*s);
+Transfer03 = (28.43*s+1)/(127.66*10*s);
 
-cz01 = c2d(Transfer, ts)
+cz03 = c2d(Transfer03, ts)
+
+Transfer05 = (18.13*s+1)/(92.34*10*s);
+
+cz05 = c2d(Transfer05, ts)
+
+Transfer075 = (12.53*s+1)/(68.72*10*s);
+
+cz075 = c2d(Transfer075, ts)
 
 
 
